@@ -1,5 +1,4 @@
-﻿using System;
-using Microsoft.CodeAnalysis.CSharp.Scripting;
+﻿using Microsoft.CodeAnalysis.CSharp.Scripting;
 using Microsoft.CodeAnalysis.Scripting;
 
 namespace Papercut.Core;
@@ -20,21 +19,8 @@ public class RoslynHost
 		ScriptOptions options = ScriptOptions.Default
 			.AddImports(imports);
 
-		try
-		{
-			var result = await CSharpScript.RunAsync(code, options, globals,
-				cancellationToken: cancellationToken);
-		}
-		catch (CompilationErrorException ex)
-		{
-			Console.WriteLine(code);
-			Console.WriteLine(ex);
-		}
-		catch (Exception ex)
-		{
-			Console.WriteLine(code);
-			Console.WriteLine(ex);
-		}
+		await CSharpScript.RunAsync(code, options, globals,
+			cancellationToken: cancellationToken);
 	}
 }
 

@@ -9,18 +9,13 @@ using System.CodeDom.Compiler;
 
 namespace Papercut.Macos
 {
-	[Register ("ScriptViewController")]
-	partial class ScriptViewController
+	partial class AppDelegate
 	{
-		[Outlet]
-		AppKit.NSTextView ScriptTextBox { get; set; }
+		[Action ("RunScriptMenuItemClicked:")]
+		partial void RunScriptMenuItemClicked (AppKit.NSMenuItem sender);
 		
 		void ReleaseDesignerOutlets ()
 		{
-			if (ScriptTextBox != null) {
-				ScriptTextBox.Dispose ();
-				ScriptTextBox = null;
-			}
 		}
 	}
 }

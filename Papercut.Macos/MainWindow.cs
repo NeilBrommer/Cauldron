@@ -1,12 +1,13 @@
 using System;
-using System.Threading.Tasks;
+using System.Threading;
 using AppKit;
-using Papercut.Core;
 
 namespace Papercut.Macos;
 
 public partial class MainWindow : NSWindowController
 {
+	#region Window components
+
 	private NSSplitViewController MainContentController
 	{
 		get => (this.ContentViewController as NSSplitViewController)
@@ -26,15 +27,25 @@ public partial class MainWindow : NSWindowController
 			.ContentView.DocumentView as NSTextView;
 	}
 
-	private NSTextView ScriptOutputTextBox
+	public NSTextView ScriptOutputTextBox
 	{
 		get => (this.MainContentController
 			.SplitViewItems[1].ViewController.View as NSScrollView)
 			.ContentView.DocumentView as NSTextView;
 	}
 
+	public string ScriptText { get => this.ScriptEditorTextBox.Value; }
 
-	public MainWindow (IntPtr handle) : base (handle) { }
+	#endregion
+
+	#region Shared properties
+
+	public CancellationTokenSource ScriptCancellationTokenSource { get; set; }
+
+	#endregion
+
+
+	public MainWindow (ObjCRuntime.NativeHandle handle) : base (handle) { }
 
 	public override void AwakeFromNib()
 	{
@@ -55,27 +66,23 @@ public partial class MainWindow : NSWindowController
 
 	public void RunScript(object sender, EventArgs e)
 	{
-		this.RunScriptToolbarButton.Enabled = false;
-		this.ScriptOutputTextBox.Value = "";
-		TaskScheduler uiThread = TaskScheduler.FromCurrentSynchronizationContext();
+		ScriptRunner.RunScript(this);
+	}
 
-		PapercutWriter writer = new(obj =>
+	public void CancelScript(object sender, EventArgs e)
+	{
+		this.ScriptCancellationTokenSource?.Cancel();
+	}
+
+	public void SetScriptRunState(bool scriptIsRunning)
+	{
+		if (scriptIsRunning)
 		{
-			if (obj is string str)
-			{
-				this.BeginInvokeOnMainThread(() =>
-					this.ScriptOutputTextBox.Value += str + "\n");
-			}
-
-			return Task.CompletedTask;
-		});
-
-		string script = this.ScriptEditorTextBox.Value;
-
-		Task<bool> _ = Task
-			.Run(() => RoslynHost.RunScript(script, Array.Empty<string>(),
-				new RoslynHostGlobals(writer)))
-			.ContinueWith((t) => this.RunScriptToolbarButton.Enabled = true,
-				uiThread);
+			this.RunScriptToolbarButton.Enabled = false;
+		}
+		else
+		{
+			this.RunScriptToolbarButton.Enabled = true;
+		}
 	}
 }
