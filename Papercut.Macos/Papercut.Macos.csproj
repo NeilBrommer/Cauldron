@@ -6,14 +6,19 @@
     <ApplcationId>com.neilbrommer.papercut</ApplcationId>
     <ApplicationVersion>1</ApplicationVersion>
     <ApplicationDisplayVersion>1.0</ApplicationDisplayVersion>
+    <AccentColor>AccentColor</AccentColor>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <CreatePackage>false</CreatePackage>
     <UseSGen>false</UseSGen>
+    <WarningLevel>4</WarningLevel>
+    <LinkMode>None</LinkMode>
+    <AssemblyName>Papercut</AssemblyName>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <CreatePackage>false</CreatePackage>
     <UseSGen>false</UseSGen>
+    <LinkMode>None</LinkMode>
   </PropertyGroup>
   <ItemGroup>
     <ImageAsset Update="Assets.xcassets\AppIcon.appiconset\AppIcon-512%402x.png">
