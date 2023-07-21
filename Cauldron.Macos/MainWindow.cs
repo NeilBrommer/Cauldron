@@ -80,6 +80,16 @@ public partial class MainWindow : NSWindowController
 		this.ScriptCancellationTokenSource?.Cancel();
 	}
 
+	partial void NewTabClicked(AppKit.NSToolbarItem sender)
+	{
+		this.CreateNewTab();
+	}
+
+	partial void NewTabMenuItemClicked(AppKit.NSMenuItem sender)
+	{
+		this.CreateNewTab();
+	}
+
 	public void SetScriptRunState(bool scriptIsRunning)
 	{
 		if (scriptIsRunning)
@@ -90,5 +100,13 @@ public partial class MainWindow : NSWindowController
 		{
 			this.RunScriptToolbarButton.Enabled = true;
 		}
+	}
+
+	public void CreateNewTab()
+	{
+		MainWindow newWindow = this.Storyboard.InstantiateInitialController()
+			as MainWindow;
+		this.Window.AddTabbedWindow(newWindow.Window, NSWindowOrderingMode.Above);
+		this.Window.SelectNextTab(this);
 	}
 }

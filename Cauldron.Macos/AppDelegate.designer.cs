@@ -11,6 +11,9 @@ namespace Cauldron.Macos
 {
 	partial class AppDelegate
 	{
+		[Action ("NewTabMenuItemClicked:")]
+		partial void NewTabMenuItemClicked (AppKit.NSMenuItem sender);
+
 		[Action ("RunScriptMenuItemClicked:")]
 		partial void RunScriptMenuItemClicked (AppKit.NSMenuItem sender);
 		

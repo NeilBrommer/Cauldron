@@ -65,6 +65,11 @@
                                                 <action selector="newDocument:" target="Ady-hI-5gd" id="4Si-XN-c54"/>
                                             </connections>
                                         </menuItem>
+                                        <menuItem title="New Tab" keyEquivalent="t" id="NId-gA-yuH">
+                                            <connections>
+                                                <action selector="NewTabMenuItemClicked:" target="Voe-Tx-rLC" id="Uat-zk-F3C"/>
+                                            </connections>
+                                        </menuItem>
                                         <menuItem title="Open…" keyEquivalent="o" id="IAo-SY-fd9">
                                             <connections>
                                                 <action selector="openDocument:" target="Ady-hI-5gd" id="bVn-NM-KNZ"/>
@@ -415,7 +420,6 @@
                 <windowController id="JKR-xj-8kh" customClass="MainWindow" sceneMemberID="viewController">
                     <window key="window" title="Cauldron" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" releasedWhenClosed="NO" frameAutosaveName="" animationBehavior="default" tabbingMode="preferred" id="d7K-Gm-g9N">
                         <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES" resizable="YES" fullSizeContentView="YES"/>
-                        <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
                         <rect key="contentRect" x="211" y="264" width="620" height="406"/>
                         <rect key="screenRect" x="0.0" y="0.0" width="1512" height="944"/>
                         <value key="minSize" type="size" width="480" height="270"/>
@@ -434,11 +438,17 @@
                                 <toolbarItem implicitItemIdentifier="8EDDDA98-E8C5-404C-9832-8C97B1DAEF5C" label="Run Script" paletteLabel="Run Script" tag="-1" image="play.fill" catalog="system" bordered="YES" sizingBehavior="auto" autovalidates="NO" id="BH3-uw-K5S"/>
                                 <toolbarItem implicitItemIdentifier="NSToolbarSpaceItem" id="ib2-fU-LMb"/>
                                 <toolbarItem implicitItemIdentifier="NSToolbarFlexibleSpaceItem" id="GqC-ht-JU0"/>
+                                <toolbarItem implicitItemIdentifier="3C40411F-C0EC-43C1-B18B-82BA5661BF11" label="New Tab" paletteLabel="New Tab" tag="-1" image="plus" catalog="system" bordered="YES" sizingBehavior="auto" id="uBe-lp-9U2">
+                                    <connections>
+                                        <action selector="NewTabClicked:" target="JKR-xj-8kh" id="x1O-6U-svq"/>
+                                    </connections>
+                                </toolbarItem>
                             </allowedToolbarItems>
                             <defaultToolbarItems>
                                 <toolbarItem reference="a3w-Fk-xXU"/>
                                 <toolbarItem reference="eF0-yp-1b0"/>
                                 <toolbarItem reference="BH3-uw-K5S"/>
+                                <toolbarItem reference="uBe-lp-9U2"/>
                             </defaultToolbarItems>
                         </toolbar>
                         <connections>
@@ -617,6 +627,7 @@
     </scenes>
     <resources>
         <image name="play.fill" catalog="system" width="12" height="13"/>
+        <image name="plus" catalog="system" width="14" height="13"/>
         <image name="sidebar.leading" catalog="system" width="18" height="14"/>
     </resources>
 </document>

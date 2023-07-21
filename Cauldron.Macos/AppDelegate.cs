@@ -27,9 +27,19 @@ public partial class AppDelegate : NSApplicationDelegate
 				as MainWindow);
 	}
 
+	partial void NewTabMenuItemClicked(AppKit.NSMenuItem sender)
+	{
+		(NSApplication.SharedApplication.KeyWindow.WindowController
+			as MainWindow)
+			.CreateNewTab();
+	}
+
 	[Action("validateMenuItem:")]
 	public bool ValidateMenuItem(AppKit.NSMenuItem sender)
 	{
-		return true;
+		if (sender.Title is "Run Script" or "New Tab")
+			return NSApplication.SharedApplication.KeyWindow != null;
+
+		return false;
 	}
 }
