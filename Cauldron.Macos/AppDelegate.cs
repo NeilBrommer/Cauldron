@@ -1,7 +1,7 @@
 using AppKit;
 using Foundation;
 
-namespace Papercut.Macos;
+namespace Cauldron.Macos;
 
 [Register("AppDelegate")]
 public partial class AppDelegate : NSApplicationDelegate

@@ -1,10 +1,9 @@
 ﻿using System;
-using Papercut.Core;
 using System.Threading;
 using System.Threading.Tasks;
-using AppKit;
+using Cauldron.Core;
 
-namespace Papercut.Macos;
+namespace Cauldron.Macos;
 
 public static class ScriptRunner
 {
@@ -14,7 +13,7 @@ public static class ScriptRunner
 		window.ScriptOutputTextBox.Value = "";
 		TaskScheduler uiThread = TaskScheduler.FromCurrentSynchronizationContext();
 
-		PapercutWriter writer = new(obj =>
+		CauldronWriter writer = new(obj =>
 		{
 			if (obj is string str)
 			{

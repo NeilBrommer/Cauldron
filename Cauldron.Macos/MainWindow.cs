@@ -2,7 +2,7 @@ using System;
 using System.Threading;
 using AppKit;
 
-namespace Papercut.Macos;
+namespace Cauldron.Macos;
 
 public partial class MainWindow : NSWindowController
 {
@@ -18,6 +18,12 @@ public partial class MainWindow : NSWindowController
 	{
 		get => (this.ContentViewController as NSSplitViewController)
 			.SplitViewItems[0].ViewController;
+	}
+
+	private NSOutlineView SidebarList
+	{
+		get => (this.SidebarController.View.Subviews[0] as NSScrollView)
+			.ContentView.DocumentView as NSOutlineView;
 	}
 
 	private NSTextView ScriptEditorTextBox

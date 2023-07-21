@@ -1,6 +1,6 @@
 ﻿using AppKit;
 
-namespace Papercut.Macos;
+namespace Cauldron.Macos;
 
 static class MainClass
 {

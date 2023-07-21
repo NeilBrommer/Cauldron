@@ -1,7 +1,7 @@
 ﻿using Microsoft.CodeAnalysis.CSharp.Scripting;
 using Microsoft.CodeAnalysis.Scripting;
 
-namespace Papercut.Core;
+namespace Cauldron.Core;
 
 public class RoslynHost
 {
@@ -26,10 +26,10 @@ public class RoslynHost
 
 public class RoslynHostGlobals
 {
-	public PapercutWriter Papercut { get; set; }
+	public CauldronWriter Cauldron { get; set; }
 
-	public RoslynHostGlobals(PapercutWriter writer)
+	public RoslynHostGlobals(CauldronWriter writer)
 	{
-		this.Papercut = writer;
+		this.Cauldron = writer;
 	}
 }

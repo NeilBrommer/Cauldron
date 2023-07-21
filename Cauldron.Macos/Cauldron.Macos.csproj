@@ -2,8 +2,8 @@
   <PropertyGroup>
     <TargetFramework>net7.0-macos</TargetFramework>
     <OutputType>Exe</OutputType>
-    <ApplicationTitle>Papercut</ApplicationTitle>
-    <ApplcationId>com.neilbrommer.papercut</ApplcationId>
+    <ApplicationTitle>Cauldron</ApplicationTitle>
+    <ApplcationId>com.neilbrommer.cauldron</ApplcationId>
     <ApplicationVersion>1</ApplicationVersion>
     <ApplicationDisplayVersion>1.0</ApplicationDisplayVersion>
     <AccentColor>AccentColor</AccentColor>
@@ -13,7 +13,7 @@
     <UseSGen>false</UseSGen>
     <WarningLevel>4</WarningLevel>
     <LinkMode>None</LinkMode>
-    <AssemblyName>Papercut</AssemblyName>
+    <AssemblyName>Cauldron</AssemblyName>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <CreatePackage>false</CreatePackage>
@@ -46,6 +46,6 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Papercut.Core\Papercut.Core.csproj" />
+    <ProjectReference Include="..\Cauldron.Core\Cauldron.Core.csproj" />
   </ItemGroup>
 </Project>

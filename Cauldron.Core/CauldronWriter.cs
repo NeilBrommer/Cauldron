@@ -1,12 +1,12 @@
 ﻿using System;
 
-namespace Papercut.Core;
+namespace Cauldron.Core;
 
-public class PapercutWriter
+public class CauldronWriter
 {
 	private Func<object, Task> OutputFunc { get; set; }
 
-	public PapercutWriter(Func<object, Task> outputFunc)
+	public CauldronWriter(Func<object, Task> outputFunc)
 	{
 		this.OutputFunc = outputFunc;
 	}

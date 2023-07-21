@@ -7,7 +7,7 @@
 using Foundation;
 using System.CodeDom.Compiler;
 
-namespace Papercut.Macos
+namespace Cauldron.Macos
 {
 	[Register ("MainWindow")]
 	partial class MainWindow

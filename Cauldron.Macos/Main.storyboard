@@ -6,17 +6,17 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--Papercut Application-->
+        <!--Cauldron Application-->
         <scene sceneID="JPo-4y-FX3">
             <objects>
-                <application id="hnw-xV-0zn" customClass="PapercutApplication" sceneMemberID="viewController">
+                <application id="hnw-xV-0zn" customClass="CauldronApplication" sceneMemberID="viewController">
                     <menu key="mainMenu" title="Main Menu" systemMenu="main" id="AYu-sK-qS6">
                         <items>
-                            <menuItem title="Papercut" id="1Xt-HY-uBw">
+                            <menuItem title="Cauldron" id="1Xt-HY-uBw">
                                 <modifierMask key="keyEquivalentModifierMask"/>
-                                <menu key="submenu" title="Papercut" systemMenu="apple" id="uQy-DD-JDr">
+                                <menu key="submenu" title="Cauldron" systemMenu="apple" id="uQy-DD-JDr">
                                     <items>
-                                        <menuItem title="About Papercut" id="5kV-Vb-QxS">
+                                        <menuItem title="About Cauldron" id="5kV-Vb-QxS">
                                             <modifierMask key="keyEquivalentModifierMask"/>
                                             <connections>
                                                 <action selector="orderFrontStandardAboutPanel:" target="Ady-hI-5gd" id="Exp-CZ-Vem"/>
@@ -30,7 +30,7 @@
                                             <menu key="submenu" title="Services" systemMenu="services" id="hz9-B4-Xy5"/>
                                         </menuItem>
                                         <menuItem isSeparatorItem="YES" id="4je-JR-u6R"/>
-                                        <menuItem title="Hide Papercut" keyEquivalent="h" id="Olw-nP-bQN">
+                                        <menuItem title="Hide Cauldron" keyEquivalent="h" id="Olw-nP-bQN">
                                             <connections>
                                                 <action selector="hide:" target="Ady-hI-5gd" id="PnN-Uc-m68"/>
                                             </connections>
@@ -48,7 +48,7 @@
                                             </connections>
                                         </menuItem>
                                         <menuItem isSeparatorItem="YES" id="kCx-OE-vgT"/>
-                                        <menuItem title="Quit Papercut" keyEquivalent="q" id="4sb-4s-VLi">
+                                        <menuItem title="Quit Cauldron" keyEquivalent="q" id="4sb-4s-VLi">
                                             <connections>
                                                 <action selector="terminate:" target="Ady-hI-5gd" id="Te7-pn-YzF"/>
                                             </connections>
@@ -413,7 +413,7 @@
         <scene sceneID="ktg-sd-7li">
             <objects>
                 <windowController id="JKR-xj-8kh" customClass="MainWindow" sceneMemberID="viewController">
-                    <window key="window" title="Papercut" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" releasedWhenClosed="NO" frameAutosaveName="" animationBehavior="default" tabbingMode="preferred" id="d7K-Gm-g9N">
+                    <window key="window" title="Cauldron" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" releasedWhenClosed="NO" frameAutosaveName="" animationBehavior="default" tabbingMode="preferred" id="d7K-Gm-g9N">
                         <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES" resizable="YES" fullSizeContentView="YES"/>
                         <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
                         <rect key="contentRect" x="211" y="264" width="620" height="406"/>
@@ -519,7 +519,14 @@
                                     <size key="minSize" width="700" height="300"/>
                                     <size key="maxSize" width="700" height="10000000"/>
                                     <attributedString key="textStorage">
-                                        <fragment content="Papercut.Dump(&quot;From Script&quot;);">
+                                        <fragment content="Cauldron">
+                                            <attributes>
+                                                <color key="NSColor" name="textColor" catalog="System" colorSpace="catalog"/>
+                                                <font key="NSFont" size="14" name="Menlo-Regular"/>
+                                                <paragraphStyle key="NSParagraphStyle" alignment="natural" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
+                                            </attributes>
+                                        </fragment>
+                                        <fragment content=".Dump(&quot;From Script&quot;);">
                                             <attributes>
                                                 <color key="NSColor" name="textColor" catalog="System" colorSpace="catalog"/>
                                                 <font key="NSFont" size="14" name="Menlo-Regular"/>
@@ -587,15 +594,25 @@
             <objects>
                 <viewController id="fla-BV-I1i" sceneMemberID="viewController">
                     <view key="view" id="I9t-hb-gof">
-                        <rect key="frame" x="0.0" y="0.0" width="200" height="300"/>
+                        <rect key="frame" x="0.0" y="0.0" width="200" height="363"/>
                         <autoresizingMask key="autoresizingMask"/>
+                        <subviews>
+                            <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ZbN-j2-IXm">
+                                <rect key="frame" x="18" y="202" width="65" height="18"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                <buttonCell key="cell" type="check" title="Check" bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="wZq-of-aVB">
+                                    <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                                    <font key="font" metaFont="system"/>
+                                </buttonCell>
+                            </button>
+                        </subviews>
                         <viewLayoutGuide key="safeArea" id="MRU-Un-NFk"/>
                         <viewLayoutGuide key="layoutMargins" id="m0i-b2-MSN"/>
                     </view>
                 </viewController>
                 <customObject id="PWt-9c-6po" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-392.5" y="640"/>
+            <point key="canvasLocation" x="-393" y="639.5"/>
         </scene>
     </scenes>
     <resources>

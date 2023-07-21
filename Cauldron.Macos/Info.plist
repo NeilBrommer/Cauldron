@@ -3,9 +3,9 @@
 <plist version="1.0">
 <dict>
 	<key>CFBundleName</key>
-	<string>Papercut</string>
+	<string>Cauldron</string>
 	<key>CFBundleIdentifier</key>
-	<string>com.neilbrommer.papercut</string>
+	<string>com.neilbrommer.cauldron</string>
 	<key>CFBundleShortVersionString</key>
 	<string>1.0</string>
 	<key>CFBundleVersion</key>
