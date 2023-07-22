@@ -33,11 +33,10 @@ public partial class MainWindow : NSWindowController
 			.ContentView.DocumentView as NSTextView;
 	}
 
-	public NSTextView ScriptOutputTextBox
+	public WebKit.WKWebView ScriptOutputWebView
 	{
-		get => (this.MainContentController
-			.SplitViewItems[1].ViewController.View as NSScrollView)
-			.ContentView.DocumentView as NSTextView;
+		get => this.MainContentController
+			.SplitViewItems[1].ViewController.View as WebKit.WKWebView;
 	}
 
 	public string ScriptText { get => this.ScriptEditorTextBox.Value; }
