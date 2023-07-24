@@ -32,7 +32,8 @@ public class LanguageDescriptor : NSObject
 	/// the keywords for this language.
 	/// </summary>
 	/// <value>The keywords.</value>
-	public Dictionary<string, KeywordDescriptor> Keywords { get; set; } = new Dictionary<string, KeywordDescriptor>();
+	public Dictionary<string, KeywordDescriptor> Keywords { get; set; }
+		= new Dictionary<string, KeywordDescriptor>();
 
 	/// <summary>
 	/// Gets or sets the collection of <see cref="FormatDescriptor"/> formats used to syntax
@@ -61,7 +62,7 @@ public class LanguageDescriptor : NSObject
 	[Export("KeywordColor")]
 	public NSColor KeywordColor
 	{
-		get => LoadColor("KeywordColor", NSColor.FromRgba(0.06f, 0.52f, 0.50f, 1.0f));
+		get => LoadColor("KeywordColor", NSColor.SystemTeal);
 		set
 		{
 			WillChangeValue("KeywordColor");
@@ -75,7 +76,7 @@ public class LanguageDescriptor : NSObject
 	[Export("TypeColor")]
 	public NSColor TypeColor
 	{
-		get => LoadColor("TypeColor", NSColor.FromRgba(0.06f, 0.52f, 0.50f, 1.0f));
+		get => LoadColor("TypeColor", NSColor.SystemTeal);
 		set
 		{
 			WillChangeValue("TypeColor");
@@ -89,7 +90,7 @@ public class LanguageDescriptor : NSObject
 	[Export("ValueTypeColor")]
 	public NSColor ValueTypeColor
 	{
-		get => LoadColor("ValueTypeColor", NSColor.Blue);
+		get => LoadColor("ValueTypeColor", NSColor.SystemBlue);
 		set
 		{
 			WillChangeValue("ValueTypeColor");
@@ -103,7 +104,7 @@ public class LanguageDescriptor : NSObject
 	[Export("ReferenceTypeColor")]
 	public NSColor ReferenceTypeColor
 	{
-		get => LoadColor("ReferenceTypeColor", NSColor.FromRgba(0f, 0.56f, 0.80f, 1.0f));
+		get => LoadColor("ReferenceTypeColor", NSColor.SystemCyan);
 		set
 		{
 			WillChangeValue("ReferenceTypeColor");
@@ -117,7 +118,7 @@ public class LanguageDescriptor : NSObject
 	[Export("AccessModifierColor")]
 	public NSColor AccessModifierColor
 	{
-		get => LoadColor("AccessModifierColor", NSColor.FromRgba(0.06f, 0.52f, 0.50f, 1.0f));
+		get => LoadColor("AccessModifierColor", NSColor.SystemTeal);
 		set
 		{
 			WillChangeValue("AccessModifierColor");
@@ -131,7 +132,7 @@ public class LanguageDescriptor : NSObject
 	[Export("ModifierColor")]
 	public NSColor ModifierColor
 	{
-		get => LoadColor("ModifierColor", NSColor.FromRgba(0.06f, 0.52f, 0.50f, 1.0f));
+		get => LoadColor("ModifierColor", NSColor.SystemTeal);
 		set
 		{
 			WillChangeValue("ModifierColor");
@@ -145,7 +146,7 @@ public class LanguageDescriptor : NSObject
 	[Export("SelectionStatementColor")]
 	public NSColor SelectionStatementColor
 	{
-		get => LoadColor("SelectionStatementColor", NSColor.FromRgba(0.50f, 0.25f, 0f, 1.0f));
+		get => LoadColor("SelectionStatementColor", NSColor.SystemBrown);
 		set
 		{
 			WillChangeValue("SelectionStatementColor");
@@ -159,7 +160,7 @@ public class LanguageDescriptor : NSObject
 	[Export("IterationStatementColor")]
 	public NSColor IterationStatementColor
 	{
-		get => LoadColor("IterationStatementColor", NSColor.FromRgba(0.50f, 0f, 0f, 1.0f));
+		get => LoadColor("IterationStatementColor", NSColor.SystemRed);
 		set
 		{
 			WillChangeValue("IterationStatementColor");
@@ -173,7 +174,7 @@ public class LanguageDescriptor : NSObject
 	[Export("JumpStatementColor")]
 	public NSColor JumpStatementColor
 	{
-		get => LoadColor("JumpStatementColor", NSColor.FromRgba(0.50f, 0.50f, 0.0f, 1.0f));
+		get => LoadColor("JumpStatementColor", NSColor.SystemYellow);
 		set
 		{
 			WillChangeValue("JumpStatementColor");
@@ -187,7 +188,7 @@ public class LanguageDescriptor : NSObject
 	[Export("ExceptionHandlingColor")]
 	public NSColor ExceptionHandlingColor
 	{
-		get => LoadColor("ExceptionHandlingColor", NSColor.FromRgba(1f, 0f, 0f, 1.0f));
+		get => LoadColor("ExceptionHandlingColor", NSColor.SystemRed);
 		set
 		{
 			WillChangeValue("ExceptionHandlingColor");
@@ -201,7 +202,7 @@ public class LanguageDescriptor : NSObject
 	[Export("StatementColor")]
 	public NSColor StatementColor
 	{
-		get => LoadColor("StatementColor", NSColor.FromRgba(1f, 0f, 0.50f, 1.0f));
+		get => LoadColor("StatementColor", NSColor.SystemPink);
 		set
 		{
 			WillChangeValue("StatementColor");
@@ -215,7 +216,7 @@ public class LanguageDescriptor : NSObject
 	[Export("MethodParameterColor")]
 	public NSColor MethodParameterColor
 	{
-		get => LoadColor("MethodParameterColor", NSColor.FromRgba(0.06f, 0.52f, 0.50f, 1.0f));
+		get => LoadColor("MethodParameterColor", NSColor.SystemTeal);
 		set
 		{
 			WillChangeValue("MethodParameterColor");
@@ -229,7 +230,7 @@ public class LanguageDescriptor : NSObject
 	[Export("NamespaceColor")]
 	public NSColor NamespaceColor
 	{
-		get => LoadColor("NamespaceColor", NSColor.FromRgba(0.06f, 0.52f, 0.50f, 1.0f));
+		get => LoadColor("NamespaceColor", NSColor.SystemTeal);
 		set
 		{
 			WillChangeValue("NamespaceColor");
@@ -243,7 +244,7 @@ public class LanguageDescriptor : NSObject
 	[Export("OperatorKeywordColor")]
 	public NSColor OperatorKeywordColor
 	{
-		get => LoadColor("OperatorKeywordColor", NSColor.FromRgba(0.80f, 0.40f, 1f, 1.0f));
+		get => LoadColor("OperatorKeywordColor", NSColor.SystemPurple);
 		set
 		{
 			WillChangeValue("OperatorKeywordColor");
@@ -257,7 +258,7 @@ public class LanguageDescriptor : NSObject
 	[Export("ConversionKeywordColor")]
 	public NSColor ConversionKeywordColor
 	{
-		get => LoadColor("ConversionKeywordColor", NSColor.Purple);
+		get => LoadColor("ConversionKeywordColor", NSColor.SystemPurple);
 		set
 		{
 			WillChangeValue("ConversionKeywordColor");
@@ -271,7 +272,7 @@ public class LanguageDescriptor : NSObject
 	[Export("AccessKeywordColor")]
 	public NSColor AccessKeywordColor
 	{
-		get => LoadColor("AccessKeywordColor", NSColor.Purple);
+		get => LoadColor("AccessKeywordColor", NSColor.SystemPurple);
 		set
 		{
 			WillChangeValue("AccessKeywordColor");
@@ -285,7 +286,7 @@ public class LanguageDescriptor : NSObject
 	[Export("LiteralKeywordColor")]
 	public NSColor LiteralKeywordColor
 	{
-		get => LoadColor("LiteralKeywordColor", NSColor.Purple);
+		get => LoadColor("LiteralKeywordColor", NSColor.SystemPurple);
 		set
 		{
 			WillChangeValue("LiteralKeywordColor");
@@ -299,7 +300,7 @@ public class LanguageDescriptor : NSObject
 	[Export("ContextualKeywordColor")]
 	public NSColor ContextualKeywordColor
 	{
-		get => LoadColor("ContextualKeywordColor", NSColor.FromRgba(0f, 0.50f, 0.25f, 1.0f));
+		get => LoadColor("ContextualKeywordColor", NSColor.SystemGreen);
 		set
 		{
 			WillChangeValue("ContextualKeywordColor");
@@ -313,7 +314,7 @@ public class LanguageDescriptor : NSObject
 	[Export("QueryKeywordColor")]
 	public NSColor QueryKeywordColor
 	{
-		get => LoadColor("QueryKeywordColor", NSColor.Orange);
+		get => LoadColor("QueryKeywordColor", NSColor.SystemOrange);
 		set
 		{
 			WillChangeValue("QueryKeywordColor");
@@ -327,7 +328,7 @@ public class LanguageDescriptor : NSObject
 	[Export("PreprocessorDirectiveColor")]
 	public NSColor PreprocessorDirectiveColor
 	{
-		get => LoadColor("PreprocessorDirectiveColor", NSColor.FromRgba(0.69f, 0.03f, 0.61f, 1.0f));
+		get => LoadColor("PreprocessorDirectiveColor", NSColor.SystemPurple);
 		set
 		{
 			WillChangeValue("PreprocessorDirectiveColor");
@@ -341,7 +342,7 @@ public class LanguageDescriptor : NSObject
 	[Export("CommentColor")]
 	public NSColor CommentColor
 	{
-		get => LoadColor("CommentColor", NSColor.Gray);
+		get => LoadColor("CommentColor", NSColor.SystemGray);
 		set
 		{
 			WillChangeValue("CommentColor");
@@ -355,7 +356,7 @@ public class LanguageDescriptor : NSObject
 	[Export("StringLiteralColor")]
 	public NSColor StringLiteralColor
 	{
-		get => LoadColor("StringLiteralColor", NSColor.Orange);
+		get => LoadColor("StringLiteralColor", NSColor.SystemOrange);
 		set
 		{
 			WillChangeValue("StringLiteralColor");

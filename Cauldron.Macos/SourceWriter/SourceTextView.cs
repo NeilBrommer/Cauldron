@@ -193,18 +193,14 @@ public class SourceTextView : NSTextView
 
 	#region Constructors
 
-	/// <summary>
-	/// Initializes a new instance of the <see cref="AppKit.TextKit.Formatter.SourceTextView"/> class.
-	/// </summary>
+	/// <summary>Initializes a new instance of the <see cref="SourceTextView"/> class.</summary>
 	public SourceTextView()
 	{
 		// Init
 		Initialize();
 	}
 
-	/// <summary>
-	/// Initializes a new instance of the <see cref="AppKit.TextKit.Formatter.SourceTextView"/> class.
-	/// </summary>
+	/// <summary>Initializes a new instance of the <see cref="SourceTextView"/> class.</summary>
 	/// <param name="frameRect">Frame rect.</param>
 	public SourceTextView(CGRect frameRect) : base(frameRect)
 	{
@@ -212,9 +208,7 @@ public class SourceTextView : NSTextView
 		Initialize();
 	}
 
-	/// <summary>
-	/// Initializes a new instance of the <see cref="AppKit.TextKit.Formatter.SourceTextView"/> class.
-	/// </summary>
+	/// <summary>Initializes a new instance of the <see cref="SourceTextView"/> class.</summary>
 	/// <param name="frameRect">Frame rect.</param>
 	/// <param name="container">Container.</param>
 	public SourceTextView(CGRect frameRect, NSTextContainer container) : base(frameRect, container)
@@ -223,9 +217,7 @@ public class SourceTextView : NSTextView
 		Initialize();
 	}
 
-	/// <summary>
-	/// Initializes a new instance of the <see cref="AppKit.TextKit.Formatter.SourceTextView"/> class.
-	/// </summary>
+	/// <summary>Initializes a new instance of the <see cref="SourceTextView"/> class.</summary>
 	/// <param name="coder">Coder.</param>
 	public SourceTextView(NSCoder coder) : base(coder)
 	{
@@ -233,25 +225,18 @@ public class SourceTextView : NSTextView
 		Initialize();
 	}
 
-	/// <summary>
-	/// Initializes a new instance of the <see cref="AppKit.TextKit.Formatter.SourceTextView"/> class.
-	/// </summary>
+	/// <summary>Initializes a new instance of the <see cref="SourceTextView"/> class.</summary>
 	/// <param name="handle">Handle.</param>
 	public SourceTextView(IntPtr handle) : base(handle)
 	{
-		// Init
 		Initialize();
 	}
 
-	/// <summary>
-	/// Initialize this instance.
-	/// </summary>
+	/// <summary>Initialize this instance.</summary>
 	private void Initialize()
 	{
-
-		// Init
 		this.Delegate = new SourceTextViewDelegate(this);
-
+		this.UsesAdaptiveColorMappingForDarkAppearance = true;
 	}
 
 	#endregion

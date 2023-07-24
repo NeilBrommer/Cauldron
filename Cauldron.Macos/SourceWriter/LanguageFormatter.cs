@@ -309,6 +309,8 @@ public class LanguageFormatter : NSObject
 			{
 				TextEditor.LayoutManager.RemoveTemporaryAttribute(
 					NSStringAttributeKey.ForegroundColor, range);
+				TextEditor.LayoutManager.SetTemporaryAttributes(
+					new NSDictionary(NSStringAttributeKey.ForegroundColor, NSColor.ControlText), range);
 			}
 		}
 		catch
