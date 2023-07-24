@@ -8,6 +8,7 @@ using System.Reflection;
 using System.Linq;
 using System.ComponentModel.DataAnnotations;
 using System.Collections;
+using System.IO;
 
 namespace Cauldron.Macos;
 
@@ -95,7 +96,7 @@ public static class ScriptRunner
 	{
 		TagBuilder head = new("head");
 		TagBuilder style = new("style");
-		style.InnerHtml.AppendHtml(outputCss);
+		style.InnerHtml.AppendHtml(OutputCss);
 		head.InnerHtml.AppendHtml(style);
 
 		string contents = "<!DOCTYPE html>"
@@ -215,61 +216,18 @@ public static class ScriptRunner
 		return output;
 	}
 
-	private const string outputCss = """
-		body {
-			font-family: system-ui;
-		}
-
-		* {
-			box-sizing: border-box;
-		}
-
-		.output-section {
-			margin-bottom: 1rem;
-			padding-left: 6px;
-			transition: box-shadow 250ms ease-in-out;
-			box-shadow: -2px 0 0 0 rgba(175, 82, 222, 0.25);
-
-			&:hover {
-				box-shadow: -4px 0 0 0 rgba(175, 82, 222, 0.5);
-			}
-		}
-
-		h2 {
-			font-size: 1.25rem;
-		}
-
-		table {
-			border-collapse: collapse;
-			margin-bottom: 1rem;
-			border: solid 1px lightgray;
-
-			caption {
-				margin-bottom: 0.5em;
+	private static string _outputCss = null;
+	private static string OutputCss
+	{
+		get
+		{
+			if (_outputCss is null)
+			{
+				string path = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "../Resources/ScriptOutput.css");
+				_outputCss = File.ReadAllText(path);
 			}
 
-			th {
-				font-weight: bold;
-				text-align: center;
-				padding: 8px;
-				border-bottom: solid 1px lightgray;
-			}
-
-			th:not(:last-child) {
-				border-right: solid 1px lightgray;
-			}
-
-			td {
-				padding: 8px;
-			}
-
-			tr:nth-child(even) {
-				background-color: rgba(0, 0, 0, 0.065);
-			}
+			return _outputCss;
 		}
-
-		code {
-			font-family: ui-monospace;
-		}
-		""";
+	}
 }

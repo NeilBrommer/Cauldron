@@ -55,9 +55,13 @@
   <ItemGroup>
     <None Remove="SourceWriter\" />
     <None Remove="SourceWriter\LanguageFormats\" />
+    <None Remove="ScriptOutput.css" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="SourceWriter\" />
     <Folder Include="SourceWriter\LanguageFormats\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="ScriptOutput.css" />
   </ItemGroup>
 </Project>
