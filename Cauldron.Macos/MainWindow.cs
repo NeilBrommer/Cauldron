@@ -1,6 +1,8 @@
 using System;
 using System.Threading;
 using AppKit;
+using Cauldron.Macos.SourceWriter;
+using Cauldron.Macos.SourceWriter.LanguageFormats;
 
 namespace Cauldron.Macos;
 
@@ -26,11 +28,11 @@ public partial class MainWindow : NSWindowController
 			.ContentView.DocumentView as NSOutlineView;
 	}
 
-	private NSTextView ScriptEditorTextBox
+	private SourceTextView ScriptEditorTextBox
 	{
 		get => (this.MainContentController
 			.SplitViewItems[0].ViewController.View as NSScrollView)
-			.ContentView.DocumentView as NSTextView;
+			.ContentView.DocumentView as SourceTextView;
 	}
 
 	public WebKit.WKWebView ScriptOutputWebView
@@ -58,7 +60,7 @@ public partial class MainWindow : NSWindowController
 
 		this.RunScriptToolbarButton.Activated += RunScript;
 
-		NSTextView scriptTextBox = this.ScriptEditorTextBox;
+		SourceTextView scriptTextBox = this.ScriptEditorTextBox;
 		scriptTextBox.Font = NSFont.MonospacedSystemFont(new nfloat(14), NSFontWeight.Regular);
 		scriptTextBox.AutomaticQuoteSubstitutionEnabled = false;
 		scriptTextBox.AutomaticDashSubstitutionEnabled = false;
@@ -67,6 +69,9 @@ public partial class MainWindow : NSWindowController
 		scriptTextBox.AutomaticTextCompletionEnabled = false;
 		scriptTextBox.AutomaticTextReplacementEnabled = false;
 		scriptTextBox.AutomaticLinkDetectionEnabled = false;
+
+		scriptTextBox.Formatter = new LanguageFormatter(scriptTextBox, new CSharpDescriptor());
+		scriptTextBox.Formatter.Reformat();
 	}
 
 	public void RunScript(object sender, EventArgs e)

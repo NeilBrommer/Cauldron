@@ -52,4 +52,12 @@
     <PackageReference Include="Microsoft.AspNetCore.Mvc.Core" Version="2.2.5" />
     <PackageReference Include="Microsoft.AspNetCore.Mvc.ViewFeatures" Version="2.2.0" />
   </ItemGroup>
+  <ItemGroup>
+    <None Remove="SourceWriter\" />
+    <None Remove="SourceWriter\LanguageFormats\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="SourceWriter\" />
+    <Folder Include="SourceWriter\LanguageFormats\" />
+  </ItemGroup>
 </Project>
