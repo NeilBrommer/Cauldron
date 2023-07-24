@@ -84,6 +84,9 @@ public static class ScriptRunner
 		TagBuilder body)
 	{
 		TagBuilder head = new("head");
+		TagBuilder style = new("style");
+		style.InnerHtml.AppendHtml(outputCss);
+		head.InnerHtml.AppendHtml(style);
 
 		string contents = "<!DOCTYPE html>"
 			+ head.RenderAsString()
@@ -93,4 +96,62 @@ public static class ScriptRunner
 
 		webView.LoadHtmlString(new Foundation.NSString(contents), null);
 	}
+
+	private const string outputCss = """
+		body {
+			font-family: -apple-system;
+		}
+
+		* {
+			box-sizing: border-box;
+		}
+
+		.output-section {
+			margin-bottom: 1rem;
+			padding-left: 6px;
+			transition: box-shadow 250ms ease-in-out;
+			box-shadow: -2px 0 0 0 rgba(175, 82, 222, 0.25);
+
+			&:hover {
+				box-shadow: -4px 0 0 0 rgba(175, 82, 222, 0.5);
+			}
+		}
+
+		h2 {
+			font-size: 1.25rem;
+		}
+
+		table {
+			border-collapse: collapse;
+			margin-bottom: 1rem;
+			border: solid 1px lightgray;
+
+			caption {
+				margin-bottom: 0.5em;
+			}
+
+			th {
+				font-weight: bold;
+				text-align: center;
+				padding: 8px;
+				border-bottom: solid 1px lightgray;
+			}
+
+			th:not(:last-child) {
+				border-right: solid 1px lightgray;
+			}
+
+			td {
+				padding: 8px;
+			}
+
+			tr:nth-child(even) {
+				background-color: rgba(0, 0, 0, 0.065);
+			}
+		}
+
+		code {
+			font-family: ui-monospace;
+		}
+		""";
 }
