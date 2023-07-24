@@ -11,7 +11,7 @@ public class CauldronWriter
 		this.OutputFunc = outputFunc;
 	}
 
-	public async Task Dump(object obj)
+	public async Task Output(object obj)
 	{
 		await this.OutputFunc(obj);
 	}
