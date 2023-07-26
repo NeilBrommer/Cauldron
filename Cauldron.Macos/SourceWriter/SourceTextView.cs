@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Timers;
 using AppKit;
 using CoreGraphics;
 using Foundation;
@@ -435,6 +436,17 @@ public class SourceTextView : NSTextView
 
 	#region Override Methods
 
+	private Timer InputTimoutTimer { get; set; }
+	/// <summary>
+	/// The amount of time with no user input after which <see cref="OnFinishedTyping"/> will be run
+	/// </summary>
+	public TimeSpan InputTimeoutInterval { get; set; } = new TimeSpan(0, 0, 1);
+	/// <summary>
+	/// An event triggered when the user has stopped typing for a period of time defined by
+	/// <see cref="InputTimeoutInterval"/>
+	/// </summary>
+	public event ElapsedEventHandler OnFinishedTyping;
+
 	/// <summary>
 	/// Look for special keys being pressed and does specific processing based on the key.
 	/// </summary>
@@ -570,7 +582,12 @@ public class SourceTextView : NSTextView
 
 		this.Formatter.Reformat();
 
-		//Console.WriteLine ("Key: {0}", (int)theEvent.Characters[0]);
+		this.InputTimoutTimer?.Stop();
+		this.InputTimoutTimer?.Close();
+		this.InputTimoutTimer = new Timer(this.InputTimeoutInterval);
+		this.InputTimoutTimer.AutoReset = false;
+		this.InputTimoutTimer.Elapsed += this.OnFinishedTyping;
+		this.InputTimoutTimer.Start();
 	}
 
 	/// <summary>

@@ -7,40 +7,39 @@ using Cauldron.Core;
 using System.Reflection;
 using System.Linq;
 using System.ComponentModel.DataAnnotations;
-using System.Collections;
 using System.IO;
 
 namespace Cauldron.Macos;
 
 public static class ScriptRunner
 {
+	public static void BuildScript(MainWindow window)
+	{
+		string script = "";
+		window.BeginInvokeOnMainThread(() => script = window.ScriptText);
+
+		TagBuilder body = new("body");
+
+		RoslynHostGlobals globals = new(null);
+		window.BeginInvokeOnMainThread(() => globals = new RoslynHostGlobals(CreateCauldronWriter(window, body)));
+
+		Task task = Task
+			.Run(() => RoslynHost.BuildScript(script, Array.Empty<string>(), globals))
+			.ContinueWith(t => window.BeginInvokeOnMainThread(
+				() => window.UpdateScriptDiagnostics(t.Result)));
+	}
+
 	public static void RunScript(MainWindow window)
 	{
 		window.SetScriptRunState(true);
 
 		TagBuilder body = new("body");
-
-		window.ScriptOutputWebView.SetOutputPanelContent(body);
+		string script = window.ScriptText;
+		window.ScriptCancellationTokenSource = new CancellationTokenSource();
 		TaskScheduler uiThread = TaskScheduler.FromCurrentSynchronizationContext();
 
-		CauldronWriter writer = new(obj =>
-		{
-			window.BeginInvokeOnMainThread(() =>
-			{
-				TagBuilder outputSection = new("section");
-				outputSection.AddCssClass("output-section");
-				outputSection.InnerHtml.AppendHtml(GenerateValueOutput(obj));
-				body.InnerHtml.AppendHtml(outputSection);
-
-				window.ScriptOutputWebView.SetOutputPanelContent(body);
-			});
-
-			return Task.CompletedTask;
-		});
-
-		window.ScriptCancellationTokenSource = new CancellationTokenSource();
-
-		string script = window.ScriptText;
+		// Clear the output for the new run
+		window.ScriptOutputWebView.SetOutputPanelContent(body);
 
 		Task task = Task
 			.Run(async () =>
@@ -48,7 +47,7 @@ public static class ScriptRunner
 				try
 				{
 					await RoslynHost.RunScript(script, Array.Empty<string>(),
-						new RoslynHostGlobals(writer),
+						new RoslynHostGlobals(CreateCauldronWriter(window, body)),
 						window.ScriptCancellationTokenSource.Token);
 				}
 				catch (Exception ex)
@@ -64,6 +63,24 @@ public static class ScriptRunner
 				}
 			}, window.ScriptCancellationTokenSource.Token)
 			.ContinueWith((t) => window.SetScriptRunState(false), uiThread);
+	}
+
+	private static CauldronWriter CreateCauldronWriter(MainWindow window, TagBuilder body)
+	{
+		return new CauldronWriter (obj =>
+		{
+			window.BeginInvokeOnMainThread(() =>
+			{
+				TagBuilder outputSection = new("section");
+				outputSection.AddCssClass("output-section");
+				outputSection.InnerHtml.AppendHtml(GenerateValueOutput(obj));
+				body.InnerHtml.AppendHtml(outputSection);
+
+				window.ScriptOutputWebView.SetOutputPanelContent(body);
+			});
+
+			return Task.CompletedTask;
+		});
 	}
 
 	private static TagBuilder GenerateValueOutput(object value)

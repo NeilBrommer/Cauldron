@@ -1,8 +1,13 @@
 using System;
+using System.Collections.Immutable;
+using System.Linq;
 using System.Threading;
+using System.Timers;
 using AppKit;
 using Cauldron.Macos.SourceWriter;
 using Cauldron.Macos.SourceWriter.LanguageFormats;
+using Foundation;
+using Microsoft.CodeAnalysis;
 
 namespace Cauldron.Macos;
 
@@ -61,6 +66,7 @@ public partial class MainWindow : NSWindowController
 		this.RunScriptToolbarButton.Activated += RunScript;
 
 		SourceTextView scriptTextBox = this.ScriptEditorTextBox;
+		scriptTextBox.OnFinishedTyping += this.BuildScript;
 		scriptTextBox.Font = NSFont.MonospacedSystemFont(new nfloat(14), NSFontWeight.Regular);
 		scriptTextBox.AutomaticQuoteSubstitutionEnabled = false;
 		scriptTextBox.AutomaticDashSubstitutionEnabled = false;
@@ -72,6 +78,11 @@ public partial class MainWindow : NSWindowController
 
 		scriptTextBox.Formatter = new LanguageFormatter(scriptTextBox, new CSharpDescriptor());
 		scriptTextBox.Formatter.Reformat();
+	}
+
+	public void BuildScript(object sender, ElapsedEventArgs args)
+	{
+		ScriptRunner.BuildScript(this);
 	}
 
 	public void RunScript(object sender, EventArgs e)
@@ -92,6 +103,46 @@ public partial class MainWindow : NSWindowController
 	partial void NewTabMenuItemClicked(AppKit.NSMenuItem sender)
 	{
 		this.CreateNewTab();
+	}
+
+	public void UpdateScriptDiagnostics(ImmutableArray<Diagnostic> diagnostics)
+	{
+		Console.WriteLine(diagnostics.Select(d => $"{d.Severity}: {d.GetMessage()}").Join("\n"));
+
+		foreach (Diagnostic diagnostic in diagnostics)
+		{
+			int start = diagnostic.Location.SourceSpan.Start;
+			int end = diagnostic.Location.SourceSpan.End;
+
+			if (start == end && end < this.ScriptText.Length)
+				end += 1;
+			else if (start == end)
+				start -= 1;
+
+			NSRange range = new(start,end);
+
+			this.ScriptEditorTextBox.LayoutManager
+				.AddTemporaryAttribute(NSStringAttributeKey.UnderlineStyle,
+					new NSNumber((int)(NSUnderlineStyle.Thick | NSUnderlineStyle.PatternDot)),
+					range);
+			this.ScriptEditorTextBox.LayoutManager
+					.AddTemporaryAttribute(NSStringAttributeKey.ToolTip,
+						new NSString($"{diagnostic.Id} {diagnostic.GetMessage()}"),
+						range);
+
+			if (diagnostic.Severity == DiagnosticSeverity.Error)
+				this.ScriptEditorTextBox.LayoutManager
+					.AddTemporaryAttribute(NSStringAttributeKey.UnderlineColor, NSColor.SystemRed,
+						range);
+			else if (diagnostic.Severity == DiagnosticSeverity.Warning)
+				this.ScriptEditorTextBox.LayoutManager
+					.AddTemporaryAttribute(NSStringAttributeKey.UnderlineColor, NSColor.SystemGreen,
+						range);
+			else if (diagnostic.Severity == DiagnosticSeverity.Info)
+				this.ScriptEditorTextBox.LayoutManager
+					.AddTemporaryAttribute(NSStringAttributeKey.UnderlineColor, NSColor.SystemBlue,
+						range);
+		}
 	}
 
 	public void SetScriptRunState(bool scriptIsRunning)

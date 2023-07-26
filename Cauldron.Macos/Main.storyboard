@@ -413,7 +413,7 @@
                 <customObject id="YLy-65-1bz" customClass="NSFontManager"/>
                 <customObject id="Ady-hI-5gd" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-23" y="-243"/>
+            <point key="canvasLocation" x="-23" y="-256"/>
         </scene>
         <!--Window Controller-->
         <scene sceneID="ktg-sd-7li">
@@ -421,11 +421,11 @@
                 <windowController id="JKR-xj-8kh" customClass="MainWindow" sceneMemberID="viewController">
                     <window key="window" title="Cauldron" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" releasedWhenClosed="NO" frameAutosaveName="" animationBehavior="default" tabbingMode="preferred" id="d7K-Gm-g9N">
                         <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES" resizable="YES" fullSizeContentView="YES"/>
-                        <rect key="contentRect" x="211" y="264" width="620" height="406"/>
+                        <rect key="contentRect" x="211" y="264" width="749" height="445"/>
                         <rect key="screenRect" x="0.0" y="0.0" width="1512" height="944"/>
                         <value key="minSize" type="size" width="480" height="270"/>
                         <view key="contentView" id="3If-Oy-0LB">
-                            <rect key="frame" x="0.0" y="0.0" width="620" height="406"/>
+                            <rect key="frame" x="0.0" y="0.0" width="749" height="445"/>
                             <autoresizingMask key="autoresizingMask"/>
                         </view>
                         <toolbar key="toolbar" implicitIdentifier="09D11707-F4A3-4FD5-970E-AC5832E91C2B" showsBaselineSeparator="NO" displayMode="iconOnly" sizeMode="regular" id="c7l-9K-zGH">
@@ -463,7 +463,7 @@
                 </windowController>
                 <customObject id="Dyo-ea-3jV" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-24" y="70"/>
+            <point key="canvasLocation" x="-23" y="73"/>
         </scene>
         <!--Split View Controller-->
         <scene sceneID="BCF-ui-EPb">
