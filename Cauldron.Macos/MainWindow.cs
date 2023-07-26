@@ -2,6 +2,7 @@ using System;
 using System.Collections.Immutable;
 using System.Linq;
 using System.Threading;
+using System.Threading.Tasks;
 using System.Timers;
 using AppKit;
 using Cauldron.Macos.SourceWriter;
@@ -107,7 +108,19 @@ public partial class MainWindow : NSWindowController
 
 	public void UpdateScriptDiagnostics(ImmutableArray<Diagnostic> diagnostics)
 	{
-		Console.WriteLine(diagnostics.Select(d => $"{d.Severity}: {d.GetMessage()}").Join("\n"));
+		ImmutableList<Diagnostic> infoDiagnostics = diagnostics
+			.Where(d => d.Severity == DiagnosticSeverity.Info)
+			.ToImmutableList();
+		ImmutableList<Diagnostic> warningDiagnostics = diagnostics
+			.Where(d => d.Severity == DiagnosticSeverity.Warning)
+			.ToImmutableList();
+		ImmutableList<Diagnostic> errorDiagnostics = diagnostics
+			.Where(d => d.Severity == DiagnosticSeverity.Error)
+			.ToImmutableList();
+
+		this.DiagnosticsToolbarGroup.SetLabel(infoDiagnostics.Count.ToString(), 0);
+		this.DiagnosticsToolbarGroup.SetLabel(warningDiagnostics.Count.ToString(), 1);
+		this.DiagnosticsToolbarGroup.SetLabel(errorDiagnostics.Count.ToString(), 2);
 
 		foreach (Diagnostic diagnostic in diagnostics)
 		{

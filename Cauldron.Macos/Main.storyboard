@@ -3,6 +3,7 @@
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="21701"/>
         <plugIn identifier="com.apple.WebKit2IBPlugin" version="21701"/>
+        <capability name="Image references" minToolsVersion="12.0"/>
         <capability name="NSView safe area layout guides" minToolsVersion="12.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -419,7 +420,7 @@
         <scene sceneID="ktg-sd-7li">
             <objects>
                 <windowController id="JKR-xj-8kh" customClass="MainWindow" sceneMemberID="viewController">
-                    <window key="window" title="Cauldron" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" releasedWhenClosed="NO" frameAutosaveName="" animationBehavior="default" tabbingMode="preferred" id="d7K-Gm-g9N">
+                    <window key="window" title="Cauldron" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" releasedWhenClosed="NO" frameAutosaveName="" animationBehavior="default" tabbingMode="preferred" toolbarStyle="unified" id="d7K-Gm-g9N">
                         <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES" resizable="YES" fullSizeContentView="YES"/>
                         <rect key="contentRect" x="211" y="264" width="749" height="445"/>
                         <rect key="screenRect" x="0.0" y="0.0" width="1512" height="944"/>
@@ -428,7 +429,7 @@
                             <rect key="frame" x="0.0" y="0.0" width="749" height="445"/>
                             <autoresizingMask key="autoresizingMask"/>
                         </view>
-                        <toolbar key="toolbar" implicitIdentifier="09D11707-F4A3-4FD5-970E-AC5832E91C2B" showsBaselineSeparator="NO" displayMode="iconOnly" sizeMode="regular" id="c7l-9K-zGH">
+                        <toolbar key="toolbar" implicitIdentifier="09D11707-F4A3-4FD5-970E-AC5832E91C2B" centeredItem="bj4-Kg-7Qc" showsBaselineSeparator="NO" displayMode="iconOnly" sizeMode="regular" id="c7l-9K-zGH">
                             <allowedToolbarItems>
                                 <toolbarItem implicitItemIdentifier="CC6DE1A4-9FD5-4729-8CD5-0960D99018C8" explicitItemIdentifier="toggleSidebar" label="Show Sidebar" paletteLabel="Show Sidebar" tag="-1" image="sidebar.leading" catalog="system" bordered="YES" sizingBehavior="auto" autovalidates="NO" id="a3w-Fk-xXU">
                                     <connections>
@@ -444,10 +445,33 @@
                                         <action selector="NewTabClicked:" target="JKR-xj-8kh" id="x1O-6U-svq"/>
                                     </connections>
                                 </toolbarItem>
+                                <toolbarItem implicitItemIdentifier="1FDD22AF-AF38-4957-AC69-1E8377E11C5D" label="Script Status" paletteLabel="Script Status" bordered="YES" sizingBehavior="auto" autovalidates="NO" id="bj4-Kg-7Qc">
+                                    <nil key="toolTip"/>
+                                    <segmentedControl key="view" verticalHuggingPriority="750" id="63L-Ya-hDW">
+                                        <rect key="frame" x="0.0" y="14" width="114" height="23"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <segmentedCell key="cell" borderStyle="border" alignment="left" style="texturedRounded" trackingMode="momentary" id="cZb-8H-XcB" customClass="ScriptStatusToolbarItem">
+                                            <font key="font" metaFont="system"/>
+                                            <segments>
+                                                <segment label="0" alignment="left" width="32">
+                                                    <imageReference key="image" image="info.circle.fill" catalog="system" symbolScale="medium" renderingMode="original"/>
+                                                </segment>
+                                                <segment label="0" alignment="left" width="32" tag="1">
+                                                    <imageReference key="image" image="exclamationmark.triangle.fill" catalog="system" symbolScale="medium" renderingMode="original"/>
+                                                </segment>
+                                                <segment label="0" alignment="left" toolTip="Error">
+                                                    <imageReference key="image" image="exclamationmark.circle.fill" catalog="system" symbolScale="medium" renderingMode="original"/>
+                                                </segment>
+                                            </segments>
+                                        </segmentedCell>
+                                    </segmentedControl>
+                                </toolbarItem>
                             </allowedToolbarItems>
                             <defaultToolbarItems>
                                 <toolbarItem reference="a3w-Fk-xXU"/>
                                 <toolbarItem reference="eF0-yp-1b0"/>
+                                <toolbarItem reference="GqC-ht-JU0"/>
+                                <toolbarItem reference="bj4-Kg-7Qc"/>
                                 <toolbarItem reference="BH3-uw-K5S"/>
                                 <toolbarItem reference="uBe-lp-9U2"/>
                             </defaultToolbarItems>
@@ -457,6 +481,7 @@
                         </connections>
                     </window>
                     <connections>
+                        <outlet property="DiagnosticsToolbarGroup" destination="63L-Ya-hDW" id="jQZ-pN-jop"/>
                         <outlet property="RunScriptToolbarButton" destination="BH3-uw-K5S" id="POy-ND-igI"/>
                         <segue destination="cty-XM-Fb6" kind="relationship" relationship="window.shadowedContentViewController" id="yDE-Pj-hwg"/>
                     </connections>
@@ -623,6 +648,9 @@
         </scene>
     </scenes>
     <resources>
+        <image name="exclamationmark.circle.fill" catalog="system" width="15" height="15"/>
+        <image name="exclamationmark.triangle.fill" catalog="system" width="17" height="15"/>
+        <image name="info.circle.fill" catalog="system" width="15" height="15"/>
         <image name="play.fill" catalog="system" width="12" height="13"/>
         <image name="plus" catalog="system" width="14" height="13"/>
         <image name="sidebar.leading" catalog="system" width="18" height="14"/>

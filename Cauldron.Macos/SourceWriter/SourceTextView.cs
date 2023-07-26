@@ -233,6 +233,11 @@ public class SourceTextView : NSTextView
 		Initialize();
 	}
 
+	public SourceTextView(ObjCRuntime.NativeHandle handle) : base(handle)
+	{
+		Initialize();
+	}
+
 	/// <summary>Initialize this instance.</summary>
 	private void Initialize()
 	{

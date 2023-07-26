@@ -13,6 +13,9 @@ namespace Cauldron.Macos
 	partial class MainWindow
 	{
 		[Outlet]
+		AppKit.NSSegmentedControl DiagnosticsToolbarGroup { get; set; }
+
+		[Outlet]
 		AppKit.NSToolbarItem RunScriptToolbarButton { get; set; }
 
 		[Action ("BtnRunScriptClicked:")]
@@ -32,6 +35,11 @@ namespace Cauldron.Macos
 			if (RunScriptToolbarButton != null) {
 				RunScriptToolbarButton.Dispose ();
 				RunScriptToolbarButton = null;
+			}
+
+			if (DiagnosticsToolbarGroup != null) {
+				DiagnosticsToolbarGroup.Dispose ();
+				DiagnosticsToolbarGroup = null;
 			}
 		}
 	}
