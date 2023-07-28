@@ -485,8 +485,8 @@
             <objects>
                 <splitViewController id="cty-XM-Fb6" sceneMemberID="viewController">
                     <splitViewItems>
-                        <splitViewItem canCollapse="YES" holdingPriority="260" behavior="sidebar" id="6bN-k2-GQf"/>
-                        <splitViewItem id="2pL-Ng-cHJ"/>
+                        <splitViewItem canCollapse="YES" holdingPriority="260" behavior="sidebar" separatorStyle="none" id="6bN-k2-GQf"/>
+                        <splitViewItem separatorStyle="shadow" id="2pL-Ng-cHJ"/>
                     </splitViewItems>
                     <splitView key="splitView" dividerStyle="thin" vertical="YES" id="GeA-9l-BYB">
                         <rect key="frame" x="0.0" y="0.0" width="450" height="300"/>
@@ -537,7 +537,7 @@
                             <rect key="frame" x="0.0" y="0.0" width="700" height="300"/>
                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                             <subviews>
-                                <textView wantsLayer="YES" importsGraphics="NO" richText="NO" verticallyResizable="YES" spellingCorrection="YES" smartInsertDelete="YES" id="rAS-np-zOl" customClass="SourceTextView">
+                                <textView wantsLayer="YES" importsGraphics="NO" richText="NO" horizontallyResizable="YES" verticallyResizable="YES" spellingCorrection="YES" smartInsertDelete="YES" id="rAS-np-zOl" customClass="SourceTextView">
                                     <rect key="frame" x="0.0" y="0.0" width="700" height="300"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>

@@ -76,6 +76,7 @@ public partial class MainWindow : NSWindowController
 		scriptTextBox.OnFinishedTyping += this.BuildScript;
 		scriptTextBox.OnTextChanged += this.UpdateDocument;
 
+		scriptTextBox.TextContainerInset = new CoreGraphics.CGSize(8, 8);
 		scriptTextBox.Font = NSFont.MonospacedSystemFont(new nfloat(14), NSFontWeight.Regular);
 		scriptTextBox.AutomaticQuoteSubstitutionEnabled = false;
 		scriptTextBox.AutomaticDashSubstitutionEnabled = false;
