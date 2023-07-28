@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="21701" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="JKR-xj-8kh">
+<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="21701" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="21701"/>
         <plugIn identifier="com.apple.WebKit2IBPlugin" version="21701"/>
@@ -65,11 +65,6 @@
                                         <menuItem title="New" keyEquivalent="n" id="Was-JA-tGl">
                                             <connections>
                                                 <action selector="newDocument:" target="Ady-hI-5gd" id="4Si-XN-c54"/>
-                                            </connections>
-                                        </menuItem>
-                                        <menuItem title="New Tab" keyEquivalent="t" id="NId-gA-yuH">
-                                            <connections>
-                                                <action selector="NewTabMenuItemClicked:" target="Voe-Tx-rLC" id="Uat-zk-F3C"/>
                                             </connections>
                                         </menuItem>
                                         <menuItem title="Open…" keyEquivalent="o" id="IAo-SY-fd9">
@@ -419,7 +414,7 @@
         <!--Window Controller-->
         <scene sceneID="ktg-sd-7li">
             <objects>
-                <windowController id="JKR-xj-8kh" customClass="MainWindow" sceneMemberID="viewController">
+                <windowController storyboardIdentifier="MainWindowController" id="JKR-xj-8kh" customClass="MainWindow" sceneMemberID="viewController">
                     <window key="window" title="Cauldron" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" releasedWhenClosed="NO" frameAutosaveName="" animationBehavior="default" tabbingMode="preferred" toolbarStyle="unified" id="d7K-Gm-g9N">
                         <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES" resizable="YES" fullSizeContentView="YES"/>
                         <rect key="contentRect" x="211" y="264" width="749" height="445"/>
@@ -440,11 +435,6 @@
                                 <toolbarItem implicitItemIdentifier="8EDDDA98-E8C5-404C-9832-8C97B1DAEF5C" label="Run Script" paletteLabel="Run Script" tag="-1" image="play.fill" catalog="system" bordered="YES" sizingBehavior="auto" autovalidates="NO" id="BH3-uw-K5S"/>
                                 <toolbarItem implicitItemIdentifier="NSToolbarSpaceItem" id="ib2-fU-LMb"/>
                                 <toolbarItem implicitItemIdentifier="NSToolbarFlexibleSpaceItem" id="GqC-ht-JU0"/>
-                                <toolbarItem implicitItemIdentifier="3C40411F-C0EC-43C1-B18B-82BA5661BF11" label="New Tab" paletteLabel="New Tab" tag="-1" image="plus" catalog="system" bordered="YES" sizingBehavior="auto" id="uBe-lp-9U2">
-                                    <connections>
-                                        <action selector="NewTabClicked:" target="JKR-xj-8kh" id="x1O-6U-svq"/>
-                                    </connections>
-                                </toolbarItem>
                                 <toolbarItem implicitItemIdentifier="1FDD22AF-AF38-4957-AC69-1E8377E11C5D" label="Script Status" paletteLabel="Script Status" bordered="YES" sizingBehavior="auto" autovalidates="NO" id="bj4-Kg-7Qc">
                                     <nil key="toolTip"/>
                                     <segmentedControl key="view" verticalHuggingPriority="750" id="63L-Ya-hDW">
@@ -473,7 +463,6 @@
                                 <toolbarItem reference="GqC-ht-JU0"/>
                                 <toolbarItem reference="bj4-Kg-7Qc"/>
                                 <toolbarItem reference="BH3-uw-K5S"/>
-                                <toolbarItem reference="uBe-lp-9U2"/>
                             </defaultToolbarItems>
                         </toolbar>
                         <connections>
@@ -487,6 +476,7 @@
                     </connections>
                 </windowController>
                 <customObject id="Dyo-ea-3jV" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
+                <objectController mode="entity" entityName="CSharpScriptDocument" automaticallyPreparesContent="YES" id="IPo-2l-BeA"/>
             </objects>
             <point key="canvasLocation" x="-23" y="73"/>
         </scene>
@@ -652,7 +642,6 @@
         <image name="exclamationmark.triangle.fill" catalog="system" width="17" height="15"/>
         <image name="info.circle.fill" catalog="system" width="15" height="15"/>
         <image name="play.fill" catalog="system" width="12" height="13"/>
-        <image name="plus" catalog="system" width="14" height="13"/>
         <image name="sidebar.leading" catalog="system" width="18" height="14"/>
     </resources>
 </document>

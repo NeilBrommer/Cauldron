@@ -27,13 +27,6 @@ public partial class AppDelegate : NSApplicationDelegate
 				as MainWindow);
 	}
 
-	partial void NewTabMenuItemClicked(AppKit.NSMenuItem sender)
-	{
-		(NSApplication.SharedApplication.KeyWindow.WindowController
-			as MainWindow)
-			.CreateNewTab();
-	}
-
 	[Action("validateMenuItem:")]
 	public bool ValidateMenuItem(AppKit.NSMenuItem sender)
 	{

@@ -452,6 +452,9 @@ public class SourceTextView : NSTextView
 	/// </summary>
 	public event ElapsedEventHandler OnFinishedTyping;
 
+	/// <summary>Triggered when the value in the textbox is changed</summary>
+	public event EventHandler OnTextChanged;
+
 	/// <summary>
 	/// Look for special keys being pressed and does specific processing based on the key.
 	/// </summary>
@@ -586,11 +589,14 @@ public class SourceTextView : NSTextView
 		}
 
 		this.Formatter.Reformat();
+		this.OnTextChanged.Invoke(this, null);
 
 		this.InputTimoutTimer?.Stop();
 		this.InputTimoutTimer?.Close();
-		this.InputTimoutTimer = new Timer(this.InputTimeoutInterval);
-		this.InputTimoutTimer.AutoReset = false;
+		this.InputTimoutTimer = new(this.InputTimeoutInterval)
+		{
+			AutoReset = false
+		};
 		this.InputTimoutTimer.Elapsed += this.OnFinishedTyping;
 		this.InputTimoutTimer.Start();
 	}

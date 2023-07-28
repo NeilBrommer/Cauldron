@@ -2,7 +2,6 @@ using System;
 using System.Collections.Immutable;
 using System.Linq;
 using System.Threading;
-using System.Threading.Tasks;
 using System.Timers;
 using AppKit;
 using Cauldron.Macos.SourceWriter;
@@ -14,6 +13,8 @@ namespace Cauldron.Macos;
 
 public partial class MainWindow : NSWindowController
 {
+	public CSharpScriptDocument ScriptDocument { get => (CSharpScriptDocument)this.Document; }
+
 	#region Window components
 
 	private NSSplitViewController MainContentController
@@ -34,7 +35,7 @@ public partial class MainWindow : NSWindowController
 			.ContentView.DocumentView as NSOutlineView;
 	}
 
-	private SourceTextView ScriptEditorTextBox
+	public SourceTextView ScriptEditorTextBox
 	{
 		get => (this.MainContentController
 			.SplitViewItems[0].ViewController.View as NSScrollView)
@@ -60,14 +61,21 @@ public partial class MainWindow : NSWindowController
 
 	public MainWindow (ObjCRuntime.NativeHandle handle) : base (handle) { }
 
-	public override void AwakeFromNib()
+	public override void WindowDidLoad()
 	{
-		base.AwakeFromNib();
+		base.WindowDidLoad();
+
+		this.Document ??= new CSharpScriptDocument();
+
+		if (this.ScriptDocument.ScriptText == null)
+			this.ScriptDocument.ScriptText = new NSString(this.ScriptText);
 
 		this.RunScriptToolbarButton.Activated += RunScript;
 
 		SourceTextView scriptTextBox = this.ScriptEditorTextBox;
 		scriptTextBox.OnFinishedTyping += this.BuildScript;
+		scriptTextBox.OnTextChanged += this.UpdateDocument;
+
 		scriptTextBox.Font = NSFont.MonospacedSystemFont(new nfloat(14), NSFontWeight.Regular);
 		scriptTextBox.AutomaticQuoteSubstitutionEnabled = false;
 		scriptTextBox.AutomaticDashSubstitutionEnabled = false;
@@ -79,6 +87,14 @@ public partial class MainWindow : NSWindowController
 
 		scriptTextBox.Formatter = new LanguageFormatter(scriptTextBox, new CSharpDescriptor());
 		scriptTextBox.Formatter.Reformat();
+
+		this.SetDocumentEdited(this.ScriptDocument.IsDocumentEdited);
+	}
+
+	public void UpdateDocument(object sender, EventArgs args)
+	{
+		this.ScriptDocument.ScriptText = new NSString(this.ScriptText);
+		this.SetDocumentEdited(this.ScriptDocument.IsDocumentEdited);
 	}
 
 	public void BuildScript(object sender, ElapsedEventArgs args)
@@ -94,11 +110,6 @@ public partial class MainWindow : NSWindowController
 	public void CancelScript(object sender, EventArgs e)
 	{
 		this.ScriptCancellationTokenSource?.Cancel();
-	}
-
-	partial void NewTabClicked(AppKit.NSToolbarItem sender)
-	{
-		this.CreateNewTab();
 	}
 
 	partial void NewTabMenuItemClicked(AppKit.NSMenuItem sender)

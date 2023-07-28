@@ -120,8 +120,6 @@ public static class ScriptRunner
 			+ head.RenderAsString()
 			+ body.RenderAsString();
 
-		Console.WriteLine("Contents: " + contents);
-
 		webView.LoadHtmlString(new Foundation.NSString(contents), null);
 	}
 
