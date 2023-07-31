@@ -1,6 +1,7 @@
 ﻿[*]
 end_of_line = lf
 insert_final_newline = true
+rulers = 100
 
 [*.cs]
 indent_style = tab
@@ -16,3 +17,7 @@ csharp_new_line_before_open_brace = all
 csharp_new_line_before_else = true
 csharp_new_line_before_catch = true
 csharp_new_line_before_finally = true
+
+[*.md]
+indent_style = tab
+indent_size = 4
