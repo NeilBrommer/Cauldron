@@ -55,6 +55,7 @@ public partial class MainWindow : NSWindowController
 	#region Shared properties
 
 	public CancellationTokenSource ScriptCancellationTokenSource { get; set; }
+	public ImmutableArray<Diagnostic> Diagnostics { get; set; } = ImmutableArray<Diagnostic>.Empty;
 
 	#endregion
 
@@ -92,6 +93,24 @@ public partial class MainWindow : NSWindowController
 		this.SetDocumentEdited(this.ScriptDocument.IsDocumentEdited);
 	}
 
+	public override void PrepareForSegue(NSStoryboardSegue segue, NSObject sender)
+	{
+		base.PrepareForSegue(segue, sender);
+
+		if (sender is NSSegmentedControl segmentedControl
+			&& segmentedControl.Identifier == "DiagnosticsButtons"
+			&& segue.DestinationController is DiagnosticsPopoverController diagPopover)
+		{
+			diagPopover.Severity = segmentedControl.SelectedSegment switch
+			{
+				0 => DiagnosticSeverity.Info,
+				1 => DiagnosticSeverity.Warning,
+				2 => DiagnosticSeverity.Error,
+				_ => DiagnosticSeverity.Info
+			};
+		}
+	}
+
 	public void UpdateDocument(object sender, EventArgs args)
 	{
 		this.ScriptDocument.ScriptText = new NSString(this.ScriptText);
@@ -113,13 +132,10 @@ public partial class MainWindow : NSWindowController
 		this.ScriptCancellationTokenSource?.Cancel();
 	}
 
-	partial void NewTabMenuItemClicked(AppKit.NSMenuItem sender)
-	{
-		this.CreateNewTab();
-	}
-
 	public void UpdateScriptDiagnostics(ImmutableArray<Diagnostic> diagnostics)
 	{
+		this.Diagnostics = diagnostics;
+
 		ImmutableList<Diagnostic> infoDiagnostics = diagnostics
 			.Where(d => d.Severity == DiagnosticSeverity.Info)
 			.ToImmutableList();
@@ -131,9 +147,15 @@ public partial class MainWindow : NSWindowController
 			.ToImmutableList();
 
 		this.DiagnosticsToolbarGroup.SetLabel(infoDiagnostics.Count.ToString(), 0);
-		this.DiagnosticsToolbarGroup.SetLabel(warningDiagnostics.Count.ToString(), 1);
-		this.DiagnosticsToolbarGroup.SetLabel(errorDiagnostics.Count.ToString(), 2);
+		this.DiagnosticsToolbarGroup.SetEnabled(infoDiagnostics.Count != 0, 0);
 
+		this.DiagnosticsToolbarGroup.SetLabel(warningDiagnostics.Count.ToString(), 1);
+		this.DiagnosticsToolbarGroup.SetEnabled(warningDiagnostics.Count != 0, 1);
+
+		this.DiagnosticsToolbarGroup.SetLabel(errorDiagnostics.Count.ToString(), 2);
+		this.DiagnosticsToolbarGroup.SetEnabled(errorDiagnostics.Count != 0, 2);
+
+		// Mark text in the 
 		foreach (Diagnostic diagnostic in diagnostics)
 		{
 			int start = diagnostic.Location.SourceSpan.Start;
@@ -161,7 +183,7 @@ public partial class MainWindow : NSWindowController
 						range);
 			else if (diagnostic.Severity == DiagnosticSeverity.Warning)
 				this.ScriptEditorTextBox.LayoutManager
-					.AddTemporaryAttribute(NSStringAttributeKey.UnderlineColor, NSColor.SystemGreen,
+					.AddTemporaryAttribute(NSStringAttributeKey.UnderlineColor, NSColor.SystemYellow,
 						range);
 			else if (diagnostic.Severity == DiagnosticSeverity.Info)
 				this.ScriptEditorTextBox.LayoutManager
@@ -180,13 +202,5 @@ public partial class MainWindow : NSWindowController
 		{
 			this.RunScriptToolbarButton.Enabled = true;
 		}
-	}
-
-	public void CreateNewTab()
-	{
-		MainWindow newWindow = this.Storyboard.InstantiateInitialController()
-			as MainWindow;
-		this.Window.AddTabbedWindow(newWindow.Window, NSWindowOrderingMode.Above);
-		this.Window.SelectNextTab(this);
 	}
 }

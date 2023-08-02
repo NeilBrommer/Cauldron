@@ -411,6 +411,104 @@
             </objects>
             <point key="canvasLocation" x="-23" y="-256"/>
         </scene>
+        <!--DiagnosticsPopoverController-->
+        <scene sceneID="acn-Kt-JQh">
+            <objects>
+                <viewController id="kEs-j4-U6W" userLabel="DiagnosticsPopoverController" customClass="DiagnosticsPopoverController" sceneMemberID="viewController">
+                    <scrollView key="view" borderType="none" autohidesScrollers="YES" horizontalLineScroll="24" horizontalPageScroll="10" verticalLineScroll="24" verticalPageScroll="10" usesPredominantAxisScrolling="NO" id="Hks-2F-bUK">
+                        <rect key="frame" x="0.0" y="0.0" width="450" height="300"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                        <clipView key="contentView" drawsBackground="NO" id="cqn-04-hFK">
+                            <rect key="frame" x="0.0" y="0.0" width="450" height="300"/>
+                            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                            <subviews>
+                                <outlineView verticalHuggingPriority="750" allowsExpansionToolTips="YES" columnAutoresizingStyle="lastColumnOnly" tableStyle="sourceList" selectionHighlightStyle="sourceList" multipleSelection="NO" autosaveColumns="NO" rowHeight="24" usesAutomaticRowHeights="YES" viewBased="YES" floatsGroupRows="NO" indentationPerLevel="13" outlineTableColumn="5vQ-lc-XSU" id="ueH-VL-qmi" customClass="SourceListView">
+                                    <rect key="frame" x="0.0" y="0.0" width="450" height="300"/>
+                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                    <size key="intercellSpacing" width="3" height="0.0"/>
+                                    <color key="backgroundColor" name="_sourceListBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="gridColor" name="gridColor" catalog="System" colorSpace="catalog"/>
+                                    <tableColumns>
+                                        <tableColumn identifier="AutomaticTableColumnIdentifier.0" editable="NO" width="418" minWidth="16" maxWidth="1000" id="5vQ-lc-XSU">
+                                            <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border">
+                                                <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
+                                                <color key="backgroundColor" name="headerColor" catalog="System" colorSpace="catalog"/>
+                                            </tableHeaderCell>
+                                            <textFieldCell key="dataCell" selectable="YES" editable="YES" title="Text Cell" id="44O-Er-1Ow">
+                                                <font key="font" metaFont="system"/>
+                                                <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
+                                                <color key="backgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                            </textFieldCell>
+                                            <tableColumnResizingMask key="resizingMask" resizeWithTable="YES" userResizable="YES"/>
+                                            <prototypeCellViews>
+                                                <tableCellView identifier="HeaderCell" id="hIJ-c2-KZG">
+                                                    <rect key="frame" x="11" y="0.0" width="427" height="17"/>
+                                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                                    <subviews>
+                                                        <textField verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="VUY-g0-yC7">
+                                                            <rect key="frame" x="0.0" y="1" width="427" height="14"/>
+                                                            <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
+                                                            <textFieldCell key="cell" lineBreakMode="truncatingTail" sendsActionOnEndEditing="YES" title="Header Cell" id="fCl-Sq-iCT">
+                                                                <font key="font" metaFont="systemMedium" size="11"/>
+                                                                <color key="textColor" name="headerColor" catalog="System" colorSpace="catalog"/>
+                                                                <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                                                            </textFieldCell>
+                                                        </textField>
+                                                    </subviews>
+                                                    <connections>
+                                                        <outlet property="textField" destination="VUY-g0-yC7" id="fMF-Z0-GSj"/>
+                                                    </connections>
+                                                </tableCellView>
+                                                <tableCellView identifier="DataCell" id="5UQ-dL-kb2">
+                                                    <rect key="frame" x="11" y="17" width="427" height="17"/>
+                                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES" heightSizable="YES" flexibleMaxY="YES"/>
+                                                    <subviews>
+                                                        <imageView fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="pak-Mk-Lui">
+                                                            <rect key="frame" x="3" y="0.0" width="17" height="17"/>
+                                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                                            <imageCell key="cell" refusesFirstResponder="YES" imageScaling="proportionallyDown" image="NSActionTemplate" id="0eY-jA-bCa"/>
+                                                        </imageView>
+                                                        <textField verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Zl8-zy-VvA">
+                                                            <rect key="frame" x="25" y="0.0" width="402" height="17"/>
+                                                            <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
+                                                            <textFieldCell key="cell" lineBreakMode="truncatingTail" sendsActionOnEndEditing="YES" title="Table View Cell" id="Lea-Pq-teY">
+                                                                <font key="font" metaFont="system"/>
+                                                                <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
+                                                                <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                                                            </textFieldCell>
+                                                        </textField>
+                                                    </subviews>
+                                                    <connections>
+                                                        <outlet property="imageView" destination="pak-Mk-Lui" id="QDN-q6-DTm"/>
+                                                        <outlet property="textField" destination="Zl8-zy-VvA" id="aRe-EC-mDA"/>
+                                                    </connections>
+                                                </tableCellView>
+                                            </prototypeCellViews>
+                                        </tableColumn>
+                                    </tableColumns>
+                                </outlineView>
+                            </subviews>
+                            <nil key="backgroundColor"/>
+                        </clipView>
+                        <scroller key="horizontalScroller" hidden="YES" wantsLayer="YES" verticalHuggingPriority="750" horizontal="YES" id="fHS-rH-sWS">
+                            <rect key="frame" x="0.0" y="284" width="450" height="16"/>
+                            <autoresizingMask key="autoresizingMask"/>
+                        </scroller>
+                        <scroller key="verticalScroller" hidden="YES" wantsLayer="YES" verticalHuggingPriority="750" horizontal="NO" id="gIS-un-96x">
+                            <rect key="frame" x="224" y="17" width="15" height="102"/>
+                            <autoresizingMask key="autoresizingMask"/>
+                        </scroller>
+                    </scrollView>
+                    <connections>
+                        <outlet property="DiagnosticOutlineView" destination="ueH-VL-qmi" id="lAb-PB-nvq"/>
+                        <outlet property="DiagnosticsOutlineView" destination="ueH-VL-qmi" id="D3c-Go-QWV"/>
+                        <outlet property="DiagnotsicsOutlineView" destination="ueH-VL-qmi" id="Jcw-Pp-kBT"/>
+                    </connections>
+                </viewController>
+                <customObject id="o6s-n2-s36" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-747" y="514"/>
+        </scene>
         <!--Window Controller-->
         <scene sceneID="ktg-sd-7li">
             <objects>
@@ -435,25 +533,30 @@
                                 <toolbarItem implicitItemIdentifier="8EDDDA98-E8C5-404C-9832-8C97B1DAEF5C" label="Run Script" paletteLabel="Run Script" tag="-1" image="play.fill" catalog="system" bordered="YES" sizingBehavior="auto" autovalidates="NO" id="BH3-uw-K5S"/>
                                 <toolbarItem implicitItemIdentifier="NSToolbarSpaceItem" id="ib2-fU-LMb"/>
                                 <toolbarItem implicitItemIdentifier="NSToolbarFlexibleSpaceItem" id="GqC-ht-JU0"/>
-                                <toolbarItem implicitItemIdentifier="1FDD22AF-AF38-4957-AC69-1E8377E11C5D" label="Script Status" paletteLabel="Script Status" bordered="YES" sizingBehavior="auto" autovalidates="NO" id="bj4-Kg-7Qc">
+                                <toolbarItem implicitItemIdentifier="1FDD22AF-AF38-4957-AC69-1E8377E11C5D" label="Diagnostics" paletteLabel="Diagnostics" bordered="YES" autovalidates="NO" id="bj4-Kg-7Qc">
                                     <nil key="toolTip"/>
-                                    <segmentedControl key="view" verticalHuggingPriority="750" id="63L-Ya-hDW">
+                                    <size key="minSize" width="114" height="23"/>
+                                    <size key="maxSize" width="150" height="26"/>
+                                    <segmentedControl key="view" identifier="DiagnosticsButtons" verticalHuggingPriority="750" id="63L-Ya-hDW">
                                         <rect key="frame" x="0.0" y="14" width="114" height="23"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <segmentedCell key="cell" borderStyle="border" alignment="left" style="texturedRounded" trackingMode="momentary" id="cZb-8H-XcB" customClass="ScriptStatusToolbarItem">
                                             <font key="font" metaFont="system"/>
                                             <segments>
-                                                <segment label="0" alignment="left" width="32">
+                                                <segment label="0" alignment="left" width="32" enabled="NO">
                                                     <imageReference key="image" image="info.circle.fill" catalog="system" symbolScale="medium" renderingMode="original"/>
                                                 </segment>
-                                                <segment label="0" alignment="left" width="32" tag="1">
+                                                <segment label="0" alignment="left" width="32" enabled="NO" tag="1">
                                                     <imageReference key="image" image="exclamationmark.triangle.fill" catalog="system" symbolScale="medium" renderingMode="original"/>
                                                 </segment>
-                                                <segment label="0" alignment="left" toolTip="Error">
+                                                <segment label="0" alignment="left" toolTip="Error" enabled="NO">
                                                     <imageReference key="image" image="exclamationmark.circle.fill" catalog="system" symbolScale="medium" renderingMode="original"/>
                                                 </segment>
                                             </segments>
                                         </segmentedCell>
+                                        <connections>
+                                            <segue destination="kEs-j4-U6W" kind="popover" popoverAnchorView="63L-Ya-hDW" popoverBehavior="t" preferredEdge="maxY" id="q8J-cg-E0J"/>
+                                        </connections>
                                     </segmentedControl>
                                 </toolbarItem>
                             </allowedToolbarItems>
@@ -478,7 +581,7 @@
                 <customObject id="Dyo-ea-3jV" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
                 <objectController mode="entity" entityName="CSharpScriptDocument" automaticallyPreparesContent="YES" id="IPo-2l-BeA"/>
             </objects>
-            <point key="canvasLocation" x="-23" y="73"/>
+            <point key="canvasLocation" x="-23.5" y="72.5"/>
         </scene>
         <!--Split View Controller-->
         <scene sceneID="BCF-ui-EPb">
@@ -531,18 +634,18 @@
             <objects>
                 <viewController id="7dz-Mm-ph3" sceneMemberID="viewController">
                     <scrollView key="view" borderType="none" horizontalLineScroll="10" horizontalPageScroll="10" verticalLineScroll="10" verticalPageScroll="10" hasHorizontalScroller="NO" id="uWO-6X-rW0">
-                        <rect key="frame" x="0.0" y="0.0" width="700" height="300"/>
+                        <rect key="frame" x="0.0" y="0.0" width="700" height="400"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <clipView key="contentView" drawsBackground="NO" id="v6T-mX-paQ">
-                            <rect key="frame" x="0.0" y="0.0" width="700" height="300"/>
+                            <rect key="frame" x="0.0" y="0.0" width="700" height="400"/>
                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                             <subviews>
                                 <textView wantsLayer="YES" importsGraphics="NO" richText="NO" horizontallyResizable="YES" verticallyResizable="YES" spellingCorrection="YES" smartInsertDelete="YES" id="rAS-np-zOl" customClass="SourceTextView">
-                                    <rect key="frame" x="0.0" y="0.0" width="700" height="300"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="700" height="400"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
                                     <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
-                                    <size key="minSize" width="700" height="300"/>
+                                    <size key="minSize" width="700" height="400"/>
                                     <size key="maxSize" width="700" height="10000000"/>
                                     <attributedString key="textStorage">
                                         <fragment content="Cauldron">
@@ -585,7 +688,7 @@
                             <autoresizingMask key="autoresizingMask"/>
                         </scroller>
                         <scroller key="verticalScroller" wantsLayer="YES" verticalHuggingPriority="750" horizontal="NO" id="S8X-st-Qy9">
-                            <rect key="frame" x="684" y="0.0" width="16" height="300"/>
+                            <rect key="frame" x="684" y="0.0" width="16" height="400"/>
                             <autoresizingMask key="autoresizingMask"/>
                         </scroller>
                     </scrollView>
@@ -599,7 +702,7 @@
             <objects>
                 <viewController id="71j-pP-grU" sceneMemberID="viewController">
                     <wkWebView key="view" wantsLayer="YES" id="8OW-Al-ci0">
-                        <rect key="frame" x="0.0" y="0.0" width="700" height="300"/>
+                        <rect key="frame" x="0.0" y="0.0" width="700" height="200"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <wkWebViewConfiguration key="configuration">
                             <audiovisualMediaTypes key="mediaTypesRequiringUserActionForPlayback" none="YES"/>
@@ -638,6 +741,7 @@
         </scene>
     </scenes>
     <resources>
+        <image name="NSActionTemplate" width="20" height="20"/>
         <image name="exclamationmark.circle.fill" catalog="system" width="15" height="15"/>
         <image name="exclamationmark.triangle.fill" catalog="system" width="17" height="15"/>
         <image name="info.circle.fill" catalog="system" width="15" height="15"/>

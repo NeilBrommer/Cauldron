@@ -44,6 +44,9 @@
     <Compile Update="AppDelegate.designer.cs">
       <DependentUpon>AppDelegate.cs</DependentUpon>
     </Compile>
+    <Compile Update="DiagnosticsPopoverController.designer.cs">
+      <DependentUpon>DiagnosticsPopoverController.cs</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Cauldron.Core\Cauldron.Core.csproj" />
@@ -56,10 +59,12 @@
     <None Remove="SourceWriter\" />
     <None Remove="SourceWriter\LanguageFormats\" />
     <None Remove="ScriptOutput.css" />
+    <None Remove="SourceList\" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="SourceWriter\" />
     <Folder Include="SourceWriter\LanguageFormats\" />
+    <Folder Include="SourceList\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="ScriptOutput.css" />

@@ -20,26 +20,17 @@ namespace Cauldron.Macos
 
 		[Action ("BtnRunScriptClicked:")]
 		partial void BtnRunScriptClicked (AppKit.NSToolbarItem sender);
-
-		[Action ("NewTabClicked:")]
-		partial void NewTabClicked (AppKit.NSToolbarItem sender);
-
-		[Action ("NewTabMenuItemClicked:")]
-		partial void NewTabMenuItemClicked (AppKit.NSMenuItem sender);
-
-		[Action ("NewTabMenuItemClicked2:")]
-		partial void NewTabMenuItemClicked2 (AppKit.NSMenuItem sender);
 		
 		void ReleaseDesignerOutlets ()
 		{
-			if (RunScriptToolbarButton != null) {
-				RunScriptToolbarButton.Dispose ();
-				RunScriptToolbarButton = null;
-			}
-
 			if (DiagnosticsToolbarGroup != null) {
 				DiagnosticsToolbarGroup.Dispose ();
 				DiagnosticsToolbarGroup = null;
+			}
+
+			if (RunScriptToolbarButton != null) {
+				RunScriptToolbarButton.Dispose ();
+				RunScriptToolbarButton = null;
 			}
 		}
 	}
