@@ -52,6 +52,8 @@ public class SourceTextView : NSTextView
 	/// <summary>Should the editor only use default words if the keyword list is empty.</summary>
 	private bool _defaultWordsOnlyIfKeywordsEmpty = true;
 
+	private LineNumberRuler LineNumberRuler;
+
 	#endregion
 
 	#region Computed Properties
@@ -243,6 +245,28 @@ public class SourceTextView : NSTextView
 	{
 		this.Delegate = new SourceTextViewDelegate(this);
 		this.UsesAdaptiveColorMappingForDarkAppearance = true;
+	}
+
+	public override void AwakeFromNib()
+	{
+		base.AwakeFromNib();
+
+		this.LineNumberRuler = new LineNumberRuler(this);
+
+		this.EnclosingScrollView.VerticalRulerView = this.LineNumberRuler;
+		this.EnclosingScrollView.HasVerticalRuler = true;
+		this.EnclosingScrollView.RulersVisible = true;
+
+		this.PostsFrameChangedNotifications = true;
+		NSView.Notifications.ObserveBoundsChanged((_, _) => this.DrawGutter());
+		this.OnTextChanged += (_, _) => this.DrawGutter();
+	}
+
+	[Export("drawGutter")]
+	public void DrawGutter()
+	{
+		if (this.LineNumberRuler is not null)
+			this.LineNumberRuler.NeedsDisplay = true;
 	}
 
 	#endregion
@@ -678,6 +702,7 @@ public class SourceTextView : NSTextView
 		// Console.WriteLine ("Read selection from pasteboard");
 		bool result = base.ReadSelectionFromPasteboard(pboard);
 		Formatter?.Reformat();
+		this.OnTextChanged?.Invoke(this, null);
 		return result;
 	}
 
@@ -695,6 +720,7 @@ public class SourceTextView : NSTextView
 		// Console.WriteLine ("Read selection from pasteboard also");
 		var result = base.ReadSelectionFromPasteboard(pboard, type);
 		Formatter?.Reformat();
+		this.OnTextChanged?.Invoke(this, null);
 		return result;
 	}
 
