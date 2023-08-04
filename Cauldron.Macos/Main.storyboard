@@ -529,7 +529,7 @@
                                         <action selector="toggleSidebar:" target="Dyo-ea-3jV" id="aPR-dB-n6v"/>
                                     </connections>
                                 </toolbarItem>
-                                <toolbarItem implicitItemIdentifier="A711F0B8-C150-4EB3-A51E-FF8EFAFC3A48" explicitItemIdentifier="NSToolbarSidebarTrackingSeparatorItemIdentifier" label="Toolbar Item" paletteLabel="Toolbar Item" tag="-1" bordered="YES" sizingBehavior="auto" id="eF0-yp-1b0"/>
+                                <toolbarItem implicitItemIdentifier="A711F0B8-C150-4EB3-A51E-FF8EFAFC3A48" explicitItemIdentifier="NSToolbarSidebarTrackingSeparatorItemIdentifier" label="Toolbar Item" paletteLabel="Toolbar Item" tag="-1" sizingBehavior="auto" id="eF0-yp-1b0"/>
                                 <toolbarItem implicitItemIdentifier="8EDDDA98-E8C5-404C-9832-8C97B1DAEF5C" label="Run Script" paletteLabel="Run Script" tag="-1" image="play.fill" catalog="system" bordered="YES" sizingBehavior="auto" autovalidates="NO" id="BH3-uw-K5S"/>
                                 <toolbarItem implicitItemIdentifier="NSToolbarSpaceItem" id="ib2-fU-LMb"/>
                                 <toolbarItem implicitItemIdentifier="NSToolbarFlexibleSpaceItem" id="GqC-ht-JU0"/>
@@ -714,36 +714,96 @@
             </objects>
             <point key="canvasLocation" x="1156" y="882"/>
         </scene>
-        <!--View Controller-->
+        <!--Explorer Sidebar View Controller-->
         <scene sceneID="hN3-Zg-qPS">
             <objects>
-                <viewController id="fla-BV-I1i" sceneMemberID="viewController">
+                <viewController id="fla-BV-I1i" customClass="ExplorerSidebarViewController" sceneMemberID="viewController">
                     <view key="view" id="I9t-hb-gof">
-                        <rect key="frame" x="0.0" y="0.0" width="200" height="363"/>
+                        <rect key="frame" x="0.0" y="0.0" width="200" height="300"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <subviews>
-                            <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ZbN-j2-IXm">
-                                <rect key="frame" x="18" y="202" width="65" height="18"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                <buttonCell key="cell" type="check" title="Check" bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="wZq-of-aVB">
-                                    <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                            <box verticalHuggingPriority="750" fixedFrame="YES" boxType="separator" translatesAutoresizingMaskIntoConstraints="NO" id="Q6A-A3-Za7">
+                                <rect key="frame" x="0.0" y="245" width="200" height="5"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
+                            </box>
+                            <segmentedControl verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ORE-gG-kYH">
+                                <rect key="frame" x="52" y="222" width="97" height="23"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                <segmentedCell key="cell" alignment="left" segmentDistribution="fillEqually" style="smallSquare" trackingMode="selectOne" id="ecp-Yh-emF">
                                     <font key="font" metaFont="system"/>
-                                </buttonCell>
-                            </button>
+                                    <segments>
+                                        <segment toolTip="Locations" image="folder.fill" catalog="system" width="46" selected="YES"/>
+                                        <segment image="externaldrive.connected.to.line.below.fill" catalog="system" width="46" tag="1"/>
+                                    </segments>
+                                </segmentedCell>
+                                <connections>
+                                    <action selector="SidebarTabClicked:" target="fla-BV-I1i" id="60a-rN-8eZ"/>
+                                </connections>
+                            </segmentedControl>
+                            <box verticalHuggingPriority="750" fixedFrame="YES" boxType="separator" translatesAutoresizingMaskIntoConstraints="NO" id="a4c-0k-CZu">
+                                <rect key="frame" x="0.0" y="217" width="200" height="5"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
+                            </box>
+                            <tabView fixedFrame="YES" type="noTabsNoBorder" translatesAutoresizingMaskIntoConstraints="NO" id="87b-Nt-4h7">
+                                <rect key="frame" x="0.0" y="0.0" width="200" height="220"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                <font key="font" metaFont="system"/>
+                                <tabViewItems>
+                                    <tabViewItem label="Locations" identifier="LocationsSidebarTab" id="ZVz-dW-0zd">
+                                        <view key="view" id="gCS-Zf-hna">
+                                            <rect key="frame" x="0.0" y="0.0" width="200" height="220"/>
+                                            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                            <subviews>
+                                                <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="wb8-wF-k6T">
+                                                    <rect key="frame" x="69" y="102" width="63" height="16"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
+                                                    <textFieldCell key="cell" lineBreakMode="clipping" title="Locations" id="Frf-yo-LSL">
+                                                        <font key="font" usesAppearanceFont="YES"/>
+                                                        <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                                        <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                                    </textFieldCell>
+                                                </textField>
+                                            </subviews>
+                                        </view>
+                                    </tabViewItem>
+                                    <tabViewItem label="Databases" identifier="DatabasesSidebarTab" id="Uco-xn-SHB">
+                                        <view key="view" id="Mba-xq-5U2">
+                                            <rect key="frame" x="0.0" y="0.0" width="200" height="220"/>
+                                            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                            <subviews>
+                                                <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="N0N-dQ-OeP">
+                                                    <rect key="frame" x="66" y="102" width="69" height="16"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
+                                                    <textFieldCell key="cell" lineBreakMode="clipping" title="Databases" id="3ca-EL-lhM">
+                                                        <font key="font" usesAppearanceFont="YES"/>
+                                                        <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                                        <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                                    </textFieldCell>
+                                                </textField>
+                                            </subviews>
+                                        </view>
+                                    </tabViewItem>
+                                </tabViewItems>
+                            </tabView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="MRU-Un-NFk"/>
                         <viewLayoutGuide key="layoutMargins" id="m0i-b2-MSN"/>
                     </view>
+                    <connections>
+                        <outlet property="SidebarTabView" destination="87b-Nt-4h7" id="hdD-4T-Ylu"/>
+                    </connections>
                 </viewController>
                 <customObject id="PWt-9c-6po" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-393" y="639.5"/>
+            <point key="canvasLocation" x="-393" y="640"/>
         </scene>
     </scenes>
     <resources>
         <image name="NSActionTemplate" width="20" height="20"/>
         <image name="exclamationmark.circle.fill" catalog="system" width="15" height="15"/>
         <image name="exclamationmark.triangle.fill" catalog="system" width="17" height="15"/>
+        <image name="externaldrive.connected.to.line.below.fill" catalog="system" width="17" height="17"/>
+        <image name="folder.fill" catalog="system" width="18" height="14"/>
         <image name="info.circle.fill" catalog="system" width="15" height="15"/>
         <image name="play.fill" catalog="system" width="12" height="13"/>
         <image name="sidebar.leading" catalog="system" width="18" height="14"/>

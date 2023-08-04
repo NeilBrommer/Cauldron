@@ -47,6 +47,9 @@
     <Compile Update="DiagnosticsPopoverController.designer.cs">
       <DependentUpon>DiagnosticsPopoverController.cs</DependentUpon>
     </Compile>
+    <Compile Update="ExplorerSidebarViewController.designer.cs">
+      <DependentUpon>ExplorerSidebarViewController.cs</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Cauldron.Core\Cauldron.Core.csproj" />
@@ -60,11 +63,15 @@
     <None Remove="SourceWriter\LanguageFormats\" />
     <None Remove="ScriptOutput.css" />
     <None Remove="SourceList\" />
+    <None Remove="Sidebar\" />
+    <None Remove="Sidebar\LocationBrowser\" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="SourceWriter\" />
     <Folder Include="SourceWriter\LanguageFormats\" />
     <Folder Include="SourceList\" />
+    <Folder Include="Sidebar\" />
+    <Folder Include="Sidebar\LocationBrowser\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="ScriptOutput.css" />
